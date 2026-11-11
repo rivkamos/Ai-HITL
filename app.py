@@ -101,9 +101,12 @@ def flow_chart(current: str | None, done: bool) -> str:
         node [fontname="Arial"];
         START [shape=circle label="START"];
         END [shape=doublecircle label="END" {end_style}];
-        {node("write_draft", "write_draft\\nהמודל כותב טיוטה")}
-        {node("human_review", "human_review\\n⏸ interrupt")}
-        {node("send_email", "send_email\\nשליחה ללקוח")}
+    n_write = node("write_draft", "write_draft\\nהמודל כותב טיוטה")
+    n_review = node("human_review", "human_review\\n⏸ interrupt")
+    n_send = node("send_email", "send_email\\nשליחה ללקוח")
+        {n_write}
+        {n_review}
+        {n_send}
         START -> write_draft;
         write_draft -> human_review;
         human_review -> send_email [label="approve / edit"];
